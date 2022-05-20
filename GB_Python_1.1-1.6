@@ -1,0 +1,61 @@
+#Задание №1
+
+age = 22
+year = 2000
+name = "Вася"
+print (age, year, name)
+
+a = str(input("Введите имя:"))
+b = int(input("Введите целое число:"))
+print( "Привет", a)
+print("Ваше целое число", b)
+
+#Задание №2
+
+t = int(input("Введите секунды: "))
+hr = t // 3600
+min = (t - hr * 3600) // 60
+sec = t - (hr * 3600 + min * 60)
+print(f"Время в формате чч:мм:сс   {hr} : {min} : {sec}")
+
+#Задание №3
+
+n = int(input("Введите числло:"))
+n1 = int("%s" % n)
+n2 = int("%s%s" % (n, n))
+n3 = int("%s%s%s" % (n, n, n))
+print (n1+n2+n3)
+
+#Задание №4
+
+x = int(input("Введите целое положительное число:"))
+m = x % 10
+a = x // 10
+while a > 0:
+    if a % 10 > m:
+        m = a % 10
+    a = a // 10
+print(m)
+
+#Задание №5
+
+viruchka = float(input('Введите выручку:'))
+izdergki = float(input('Введите издержки:'))
+if viruchka > izdergki:
+    print(f'У вас есть прибыль. Рентабельность составляет {viruchka / izdergki:.2f}')
+    sotrudniki = int(input('Введите сотрудников:'))
+    print(f'Прибыль одного работника {viruchka / sotrudniki:.2f}')
+elif viruchka == izdergki:
+    print('Прибыли нет!')
+else:
+    print('Одни убытки!!!')
+
+#Задание №6
+
+a = int(input('Введите колличество км за 1 день:'))
+b = int(input('Введите цель:'))
+i = 1
+while a < b:
+    a *= 1.1
+    i += 1
+print('Результат получен за', i, 'дней')
