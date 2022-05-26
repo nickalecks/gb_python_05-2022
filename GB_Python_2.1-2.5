@@ -1,0 +1,65 @@
+# Задание №1
+
+my_int = 10
+my_str = 'ten'
+my_float = 10.10
+general_list = [my_int, my_str, my_float]
+for i in general_list:
+    print(f'{i} is {type(i)}')
+
+# Задание №2
+
+my_list = ['1', '2', '3', '4', '5']
+if len(my_list) % 2 == 0:
+    a = 0
+    while a < len(my_list):
+        el = my_list[a]
+        my_list[a] = my_list[a+1]
+        my_list[a + 1] = el
+        a += 2
+else:
+    a = 0
+    while a < len(my_list) - 1:
+        el = my_list[a]
+        my_list[a] = my_list[a + 1]
+        my_list[a + 1] = el
+        a += 2
+print(my_list)
+
+# Задание №3
+
+month_list = [['Зима', 1, 2, 12], ['Весна', 3, 4, 5], ['Лето', 6, 7, 8], ['Осень', 9, 10, 11]]
+
+month = int(input('Введите порядковое число месяца (от 1 до 12): '))
+if month in range(1, 13):
+    for i, el in enumerate(month_list):
+        if month in el[1:4]:
+            print(f'Этот месяц относится к {el[0]}')
+            break
+else:
+    print('Такого месяца нет!')
+
+# Задание №4
+
+str = input('Введите строку текста: ')
+my_list = str.split(' ')
+
+for i, word in enumerate(my_list):
+    print(f'{i+1}. {word[0:10]}')
+
+# Задание №5
+
+rating =[7, 5, 3, 3, 2]
+add_rating = int(input('Введите новый элемент рейтинга: '))
+inserted = False
+print(f'Исходный рейтинг: {rating}')
+
+for i, el in enumerate(rating):
+    if el < add_rating:
+        rating.insert(i, add_rating)
+        print(f'Новое значение {add_rating} пришлось на {i} позицию: {rating}')
+        inserted = True
+        break
+if not inserted:
+    rating.append(add_rating)
+    print(f'Новое значение {add_rating} добавили в конец списка: {rating}')
