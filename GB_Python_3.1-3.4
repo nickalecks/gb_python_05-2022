@@ -1,0 +1,62 @@
+# Задание №1
+
+def my_number(a, b):
+    try:
+        return a/b
+    except ZeroDivisionError:
+        print(f"Ошибка! На ноль делить нельзя!")
+
+print(my_number(int(input("Введите делимое: ")), int(input("Введите делитель: "))))
+
+
+# Задание №2
+
+def data(n, f, g, c, e, p):
+    return print(f'Имя: {n}, Фамилия: {f}, Год рождения: {g} Город: {c} Почта: {e} Телефон: {p}')
+
+
+data(
+    n= input('Введите имя: '),
+    f=input('Введите фамилию: '),
+    g=input('Введите од рождения: '),
+    c=input('Введите город: '),
+    e=input('Введите почту: '),
+    p=input('Введите телефон: ')
+)
+
+
+# Задание №3
+
+def my_func(a, b, c):
+    if a >= c and b >= c:
+        return (a + b)
+    elif a > b and b < c:
+        return (a + c)
+    else:
+        return (b + c)
+
+
+print(f'Результат: {my_func(int(input("Введите аргумент a: ")), int(input("Введите аргумент b: ")), int(input("Введите аргумент с: ")))}')
+
+
+# Задание №4
+
+#Первый вариант
+def my_func1(x,y):
+    return x ** y
+
+print(f'{my_func1(int(input("Введите основание числа: ")), int(input("Введите степень: ")))}')
+
+
+#Второй вариант
+
+def my_func2(x, y):
+    res = 1
+    for i in range(abs(y)):
+        res *= x
+    if y >= 0:
+        return res
+    else:
+        return 1 / res
+
+print(f'{my_func2(int(input("Введите основание числа: ")), int(input("Введите степень: ")))}')
