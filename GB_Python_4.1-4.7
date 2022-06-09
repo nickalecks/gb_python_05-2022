@@ -1,0 +1,70 @@
+# Задание №1
+
+def my_calcu ():
+    x = float(input('Введите количество отработанных часов: '))
+    y = float(input('Введите сумму вашей ставки в час: '))
+    z = float(input('Введите размер вашей премии: '))
+    amount = x * y
+    return amount + z
+print(f'Размер зарплаты равен: {my_calcu()}')
+
+# Задание №2
+
+my_list = []
+list = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
+for i in range(1, len(list)):
+    if list[i] > list[i - 1]:
+        my_list.append(list[i])
+print('Исходный список: ', list)
+print('Список, значения которые больше предыдущих: ', my_list)
+
+# Задание №3
+
+my_list = [i for i in range(20, 240) if i % 20 == 0 or i % 21 == 0]
+
+print('Список чисел кратных 20 или 21 в диапозоне от 20 до 240: \n', my_list)
+
+# Задание №4
+
+my_list = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
+print('Исходный список: \n', my_list)
+new_list = [i for i in my_list if my_list.count(i) ==1]
+print('Список без повторений: \n', new_list)
+
+# Задание №5
+
+from functools import reduce
+
+my_list = [i for i in range(100, 1001, 2)]
+print('Чётные числа [100 -1000]: \n', my_list)
+print('Результат произведения всех элементов списка: \n', reduce(lambda x,y: x * y, my_list))
+
+# Задание №6
+
+from itertools import count, cycle
+
+print('Задание а: ')
+for i in count(3):
+    if i > 10:
+        break
+    else:
+        print(i)
+
+print('Задание б: ')
+i = 0
+for n in cycle([0, 1, 2]):
+    if i > 9:
+        break
+    print(n)
+    i += 1
+
+# Задание №7
+
+def fact(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+        yield result
+
+for el in fact(10):
+    print(el)
