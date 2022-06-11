@@ -8,25 +8,16 @@
 Например, факториал четырёх 4! = 1 * 2 * 3 * 4 = 24.
 """
 
-n=int(input("Введите число: "))
+n = int(input("Введите число: "))
 
 def fact(n):
-    if(n==1 or n==0):
-        return 1
-    else:
-        return n*fact(n-1)
+    result = 1
+    for i in range(1, n+1):
+        result = i * result
+        yield result
 
-def generator():
-    for el in fact(n):  #Так и не понял как заставить работать данное выражение, как сказанно в условии.
-        yield el
-
-g = generator()
-for i in g:
-    if i < n :
-        print(i)
-        i=i+1
-    else:
-        break
+for el in fact(n):
+    print(el)
 
 
 
