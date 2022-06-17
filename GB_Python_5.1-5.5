@@ -1,0 +1,108 @@
+# Задание №1
+
+my_list =open('test_5.1.txt', mode='w', encoding='utf-8')
+line = input('Введите текст: ')
+while line:
+    my_list.writelines(line + '\t')
+    line = input('Введите текст: ')
+    if not line:
+        break
+
+my_list.close()
+my_list = open('test_5.1.txt', mode='r', encoding='utf-8')
+content = my_list.read()
+print(content)
+my_list.close()
+
+# Задание №2
+
+def my_file():
+    try:
+        with open('test_5.2.txt', 'r', encoding="utf-8") as file:
+            my_list = file.readlines()
+            for i in range(len(my_list)):
+                new_list = my_list[i].split()
+                print(f'Количество строк в файле {len(my_list)}. В {i + 1}-ой строке {len(new_list)} слов(а)')
+    except FileNotFoundError:
+        return 'Файл не найден.'
+
+
+my_file()
+
+# Задание №3
+
+'''
+test_5.3.txt
+Иванов 35000
+Петров 18000
+Сидоров 25000
+Уткин 19000
+Дроздов 46000
+Лосев 15000
+Груздев 20000
+Скворцов 15000
+Печкин 17000
+Пенкин 12000
+Соловьёв 55000
+'''
+
+with open('test_5.3.txt', 'r', encoding='utf-8') as my_file:
+    salary = []
+    low_incom = []
+    my_list = my_file.read().split('\n')
+    for i in my_list:
+        i = i.split()
+        if int(i[1]) < 20000:
+            low_incom.append(i[0])
+        salary.append(i[1])
+
+
+print(f'Средний оклад сотрудников: {sum(map(int, salary)) / len(salary)}. \nЗарплата меньше 20 т.р. у: {low_incom}')
+
+# Задание №4
+
+'''
+test_5.4.txt
+One — 1
+Two — 2
+Three — 3
+Four — 4
+'''
+
+translate = {'One' : 'Один', 'Two' : 'Два', 'Three' : 'Три', 'Four' : 'Четыре'}
+new_file = []
+with open('test_5.4.txt', 'r', encoding='utf-8') as my_file:
+    for i in my_file:
+        i = i.split(' ', 1)
+        new_file.append(translate[i[0]] + '  ' + i[1])
+    print(new_file)
+
+with open('new_test_5.4.txt', 'w', encoding='utf-8') as my_file_new:
+    my_file_new.writelines(new_file)
+
+'''
+new_test_5.4.txt
+Один  — 1
+Два  — 2
+Три  — 3
+Четыре  — 4
+'''
+
+# Задание №5
+
+def my_sum():
+    try:
+        with open('test_5.5.txt', 'w+') as my_file:
+            line = input('Введите цифры через пробел: \n')
+            my_file.writelines(line)
+            my_number = line.split()
+
+            print(sum(map(int, my_number)))
+    except IOError:
+
+        print('Ошибка в файле!')
+    except ValueError:
+
+        print('Ошибка ввода!')
+
+my_sum()
