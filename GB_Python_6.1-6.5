@@ -1,0 +1,165 @@
+# Задание №1
+
+from time import sleep
+
+class TrafficLight:
+    __color = ['Красный', 'Жёлтый', 'Зелёный']
+
+    def running(self):
+        i = 0
+        while i < 3:
+            print(f'Светофор переключается на {TrafficLight.__color[i]} сигнал.')
+            if i == 0:
+                sleep(7)
+            elif i == 1:
+                sleep(5)
+            elif i == 2:
+                sleep(3)
+            i += 1
+
+t = TrafficLight()
+t.running()
+
+# Задание №2
+
+class Road:
+    def __init__(self, _length, _width):
+        self._length = _length
+        self._width = _width
+        self.weinght = 25
+        self.height = 5
+
+    def asphalt_mas(self):
+        asphalt_mas = self._length * self._width * self.weinght * self.height / 1000
+        print(f'Для покрытия всего дорожного полотна необходимо - {round(asphalt_mas)} тонн материала.')
+
+
+r = Road(20, 5000)
+r.asphalt_mas()
+
+# Задание №3
+
+class Worker:
+    def __init__(self, name, surname, position, wage, bonus):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._income = {'wage': int(wage), 'bonus': int(bonus)}
+
+class Position(Worker):
+    def __init__(self, name, surname, position, wage, bonus):
+        super().__init__(name, surname, position, wage, bonus)
+
+
+    def get_full_name(self):
+        return self.name + ' ' + self.surname
+
+    def get_total_income(self):
+        return self._income['wage'] + self._income['bonus']
+
+p = Position('Петя', 'Петров', 'Водитель', '45000', '10000')
+print('Имя Фамилия: ', p.get_full_name())
+print('Должность: ', p.position)
+print('Оклад + премия: ', p.get_total_income(), 'руб.')
+
+
+# Задание №4
+
+class Car:
+    def __init__(self, speed, color, name, is_police):
+        self.speed = speed
+        self.color = color
+        self.name = name
+        self.is_police = is_police
+
+    def go(self):
+        return f'Автомобиль {self.name} поехал'
+    def stop(self):
+        return f'Автомобиль {self.name} остановился'
+    def turn_left(self):
+        return f'Автомобиль {self.name} повернул налево'
+    def turn_right(self):
+        return f'Автомобиль {self.name} повернул нанаправо'
+    def show_speed(self):
+        return f'Текущая скорость автомобиля {self.name} составляет {self.speed}'
+
+class TownCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name, is_police)
+
+    def show_speed(self):
+        print (f'Текущая скорость городского автомобиля {self.name} составляет {self.speed}')
+        if self.speed > 60:
+            return f'Скорость у {self.name} выше допустимой для городского автомобиля'
+        else:
+            return f'Скорость у {self.name} допустимая для городского автомобиля'
+
+class WorkCar(Car):
+    def __init__(self, speed, color, name, is_police):
+            super().__init__(speed, color, name, is_police)
+
+    def show_speed(self):
+        print(f'Текущая скорость рабочего автомобиля {self.name} составляет {self.speed}')
+        if self.speed > 40:
+            return f'Скорость у {self.name} выше допустимой для рабочего автомобиля'
+        else:
+            return f'Скорость у {self.name} допустимая для рабочего автомобиля'
+
+class SportCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name, is_police)
+
+class PolisceCar(Car):
+    def __init__(self, speed, color, name, is_police):
+        super().__init__(speed, color, name, is_police)
+
+    def police(self):
+        if self.is_police:
+            return f'{self.name} Это автомобиль полиции'
+        else:
+            return f'{self.name} Это автомобиль не полиции'
+
+Volkswagen = TownCar(70, 'Синий', 'Volkswagen', False)
+Aurus = WorkCar(30, 'Чёрный', 'Aurus', False)
+Ferari = SportCar(120, 'Красный', 'Ferari', False)
+Lada = PolisceCar(200, 'Белый', 'Lada', True)
+
+print(Aurus.turn_left())
+print(f'Когда {Volkswagen.turn_right()}, то {Ferari.stop()}')
+print(f'{Aurus.go()} , {Aurus.show_speed()}')
+print(f'{Aurus.name} {Aurus.color}')
+print(f'{Ferari.name} это полицейская машина? {Ferari.is_police}')
+print(f'{Aurus.name} это полицейская машина? {Aurus.is_police}')
+print(Ferari.show_speed())
+print(Volkswagen.show_speed())
+print(Lada.police())
+print(Lada.show_speed())
+
+# Задание №5
+
+class Stationery:
+    def __init__(self, title):
+        self.title = title
+    def draw(self):
+        print('Запуск отрисовки')
+
+class Pen(Stationery):
+    def draw(self):
+        return f'Запуск отрисовки {self.title}'
+
+class Pencil(Stationery):
+    def draw(self):
+        return f'Запуск отрисовки {self.title}'
+
+class Handle(Stationery):
+    def draw(self):
+        return f'Запуск отрисовки {self.title}'
+
+
+pen = Pen('Ручкой')
+pencil = Pencil('Карандашом')
+handle = Handle('Маркером')
+
+print(pen.draw())
+print(pencil.draw())
+print(handle.draw())
