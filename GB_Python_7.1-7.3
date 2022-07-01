@@ -1,0 +1,100 @@
+# Задание №1
+
+class Matrix:
+    def __init__(self, my_list1):
+        self.my_list1 = my_list1
+
+    def __str__(self):
+        for row in self.my_list1:
+            for i in row:
+                print(f"{i:6}", end='')
+            print()
+        return ''
+
+    def __add__(self, my_list2):
+        for i in range(len(self.my_list1)):
+            for i_2 in range(len(my_list2.my_list1[i])):
+                self.my_list1[i][i_2] = self.my_list1[i][i_2] + my_list2.my_list1[i][i_2]
+        return Matrix.__str__(self)
+
+
+m = Matrix([[-1, 0, 1, 8], [-1, 0, 1, -5]])
+new_m = Matrix([[-2, 0, 2, 7], [-2, 0, 2, 4]])
+print(m.__add__(new_m))
+
+# Задание №2
+
+from abc import ABC, abstractmethod
+
+
+class Textil(ABC):
+
+    def __init__(self, param):
+        self.param = param
+
+    @property
+    def consumption(self):
+        return f'Сумма затраченной ткани равна: {self.param / 6.5 + 0.5 + 2 * self.param + 0.3 :.2f}'
+
+    @abstractmethod
+    def abstract(self):
+        return 'Smth vary abstract'
+
+
+class Coat(Textil):
+    def consumption(self):
+        return f'Для пошива пальто нужно: {self.param / 6.5 + 0.5 :.2f} м. ткани'
+
+    def abstract(self):
+        return 'Smth vary abstract second'
+
+
+class Costume(Textil):
+    def consumption(self):
+        return f'Для пошива костюма нужно: {2 * self.param + 0.3 :.2f} м. ткани'
+
+    def abstract(self):
+        pass
+
+
+coat = Coat(400)
+costume = Costume(55)
+print(coat.consumption)
+print(f'{costume.consumption()} \n{coat.consumption()}')
+print(coat.abstract())
+
+
+# Задание №3
+
+class Cell:
+    def __init__(self, quantity):
+        self.quantity = int(quantity)
+
+    def __add__(self, other):
+        return self.quantity + other.quantity
+
+    def __sub__(self, other):
+        if isinstance(other, Cell) and self.quantity - other.quantity > 0:
+            return self.quantity - other.quantity
+
+    def __truediv__(self, other):
+        return self.quantity // other.quantity
+
+    def __mul__(self, other):
+        return self.quantity * other.quantity
+
+    def make_order(self, row):
+        result = ''
+        for i in range(int(self.quantity / row)):
+            result += '*' * row + '\n'
+        result += '*' * (self.quantity % row) + '\n'
+        return result
+
+
+cell = Cell(24)
+cell_2 = Cell(2)
+print(cell + cell_2)
+print(cell - cell_2)
+print(cell / cell_2)
+print(cell * cell_2)
+print(cell.make_order(10))
